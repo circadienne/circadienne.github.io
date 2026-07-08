@@ -23,6 +23,11 @@ layout: layouts/post
             text-decoration: underline;
         }
 
+        p {
+            text-align: left;
+            margin: 0;
+        }
+
         .entry-url {
             font-size: .8em;
             color: var(--color-accent-1);
@@ -31,6 +36,8 @@ layout: layouts/post
         }
 
         q { font-style: italic }
+        q::before { content: '' }
+        q::after { content: '' }
     }
 </style>
 
@@ -42,7 +49,7 @@ layout: layouts/post
                     <p class="entry-url">{{ url | prettyURL }}</p>
                 </hgroup>
             </a>
-            <article>{{ desc }}</article>
+            <p>{{ desc }}</p>
         </li>
 {% endmacro %}
 
@@ -53,7 +60,7 @@ layout: layouts/post
         "A freely-available highly detailed Finnish grammar. It came useful to me in writing my Bachelors’ thesis.") }}
     {{ entry("http://steen.free.fr/interslavic/index.html",
         "Medžuslovjansky Jezyk – Меджусловјанскы језык – Interslavic",
-        "The main website of the Interslavic project. Interslavic is a <dfn>constructed language</dfn> whose goal is to be easily understood and learnt by people who speak various Slavic languages. If you already speak a Slavic language, try to understand the first sentence on the website, written entirely in Interslavic: <q>Medžuslovjansky jest jezyk, ktory Slovjani raznyh narodnostij koristajut, da by komunikovali jedin s drugym.</q>") }}
+        "The main website of the Interslavic project. Interslavic is a <dfn>constructed language</dfn> whose goal is to be easily understood and learnt by people who speak various Slavic languages. If you already speak a Slavic language, try to understand the first sentence on the website, written entirely in Interslavic: <q>“Medžuslovjansky jest jezyk, ktory Slovjani raznyh narodnostij koristajut, da by komunikovali jedin s drugym.”</q>") }}
     {{ entry("https://chridd.nfshost.com/diachronica/", "Searchable Index Diachronica",
         "A searchable version of the massive <cite>Index Diachronica</cite>, a document containing a comprehensive list of diachronic sound changes.") }}
     {{ entry("https://datashare.ed.ac.uk/handle/10283/387", "The North Wind and the Sun Database",

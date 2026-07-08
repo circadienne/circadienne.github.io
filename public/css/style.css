@@ -1,0 +1,447 @@
+/* use Charis SIL - Regular in .woff2 format */
+@font-face {
+    font-family: CharisSILW;
+    src: url(/res/fonts/Charis-Regular.woff2);
+}
+
+/* use Charis SIL - Italic in .woff2 format */
+@font-face {
+    font-family: CharisSILW;
+    font-style: italic;
+    src: url(/res/fonts/Charis-Italic.woff2);
+}
+
+/* use Charis SIL - Bold in .woff2 format */
+@font-face {
+    font-family: CharisSILW;
+    font-weight: bold;
+    src: url(/res/fonts/Charis-Bold.woff2);
+}
+
+/* use Charis SIL - Bold Italic in .woff2 format */
+@font-face {
+    font-family: CharisSILW;
+    font-weight: bold;
+    font-style: italic;
+    src: url(/res/fonts/Charis-BoldItalic.woff2);
+}
+
+html {
+    --color-accent-1: #e344bc;
+    --color-accent-2: #ffddfc;
+    --color-bg: #b2e1e8;
+}
+
+/* Basic {{{ */
+
+body {
+    font-family: "CharisSILW", serif;
+    font-size: 12pt;
+    margin: 0;
+}
+
+.content {
+    background-color: white;
+}
+
+pre, code {
+    font-family: monospace;
+    font-size: .85em;
+}
+
+.code-inline {
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+
+q {
+    &::before { content: "“" }
+    &::after { content: "”" }
+}
+
+.sidenote {
+    margin: 2em 2em;
+    font-style: italic;
+    font-size: .95em;
+}
+
+fieldset { border-radius: 5px }
+
+legend {
+    background-color: black;
+    color: white;
+    font-size: .9rem;
+    padding: 3px 6px;
+}
+
+details {
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 1.5em 0;
+    padding: .5em;
+
+    summary {
+        margin: -.5em;
+        padding: .5em;
+        cursor: pointer;
+        font-weight: bold;
+
+        /* TODO: edit ::marker somehow */
+    }
+
+    &[open] {
+        summary {
+            border-bottom: 1px solid lightgray;
+            margin-bottom: .5em;
+        }
+    }
+}
+
+main h1 { font-size: 1.5em; }
+main h2 { font-size: 1.3em; }
+
+main p {
+    text-align: justify;
+    hyphens: auto;
+}
+
+a, a:visited {
+    color: var(--color-accent-1);
+    text-underline-offset: 3px;
+}
+
+a:hover {
+    background-color: var(--color-accent-2);
+}
+
+/* external links */
+a:not([href^="http"]) {
+    text-decoration: dotted underline;
+}
+
+button {
+    color: black;
+}
+
+.footnote-ref a, a.footnote-backref {
+    text-decoration: none;
+}
+
+.spoiler {
+    transition: color linear .1s;
+    transition: text-shadow linear .2s;
+    transition: background-color linear .2s;
+    background-color: #efefef;
+    cursor: pointer;
+}
+
+input:checked + .spoiler {
+    color: transparent;
+    background-color: transparent;
+    text-shadow: 0 0 9px #999;
+    user-select: none;
+}
+
+/* Post title */
+h1#title {
+    font-size: 2.2em;
+    text-align: center;
+    padding: 0 1em;
+    margin: 0;
+    transform: skew(0.1rad, 0.02rad);
+}
+
+main > header > hgroup {
+    margin-bottom: 3em;
+
+    /* Post subtitle */
+    > p {
+        font-size: 1.3rem;
+        text-align: center;
+        margin: .5em;
+    }
+}
+
+sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+    display: inline-block;
+}
+
+.footnotes-sep {
+    display: block;
+    text-align: center;
+    width: 85%;
+    border: 1px solid lightgray;
+    margin: 1.8em auto;
+}
+
+.footnotes {
+    font-size: .85em;
+    p { text-align: left; }
+}
+
+.sc, .date, .special-place, .special-name {
+    font-variant: small-caps;
+}
+
+figure img {
+    width: 100%;
+}
+
+table {
+    display: block;
+    border-collapse: collapse;
+    max-width: 100%;
+    overflow-x: auto;
+
+    td, th {
+        border: 1px solid black;
+        padding: .2em .5em;
+    }
+
+    td { border-color: lightgray; }
+
+    & .table-cell-na { background-color: lightgray; }
+}
+
+.data {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    font-size: .85em;
+}
+
+.data .date {
+    display: inline-block;
+    padding: .15em .3em;
+}
+
+.data .data-tags {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li { box-sizing: border-box; }
+}
+
+.post-thumb-list {
+    padding: 0;
+
+    .post-thumb {
+        padding: .5em 0;
+        margin: .5em 0;
+
+        a { color: black; }
+
+        .post-thumb-title {
+            margin: 0;
+            font-size: 1.3em;
+        }
+
+        .post-thumb-subtitle {
+            font-style: italic;
+        }
+
+        .post-thumb-date {
+            font-size: .85em;
+        }
+    }
+}
+
+/* thumbnail list */
+.post-thumb-list {
+    a {
+        display: block;
+        text-decoration: none;
+    }
+}
+
+.post-thumb-index {
+    display: flex;
+    flex-direction: column;
+    column-gap: 1em;
+    font-size: .65em;
+    & > div > h1 { text-align: center; }
+}
+
+@media only screen and (min-width: 650px) {
+    .post-thumb-index {
+        flex-direction: row;
+        gap: 2em;
+        & > div { flex: 1 1 0px; }
+    }
+}
+
+.tabs {
+    border: 1px solid black;
+    border-collapse: collapse;
+
+    .tab-bar {
+        font-size: .85em;
+        display: flex;
+        overflow-x: auto;
+        background-color: #f1f1f1;
+
+        input { display: none; }
+
+        label {
+            cursor: pointer;
+            display: inline-block;
+            padding: 4px 10px;
+        }
+
+        label, div {
+            border-bottom: 1px solid black;
+        }
+
+        div {
+            flex-grow: 1;
+        }
+
+        input:checked + label {
+            background-color: white;
+            border: 1px solid black;
+            border-top: none;
+            border-bottom: none;
+        }
+
+        input:checked:first-child + label {
+            border-left: none;
+        }
+    }
+
+    .tab {
+        padding: .5em;
+    }
+}
+
+/* }}} Basic */
+
+/* Layout {{{ */
+
+.content {
+    width: fit-content;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 99vw; /* ugly hack to prevent H overflow */
+}
+
+.layout-main {
+    padding: 1em 1.5em;
+}
+
+nav a, nav a:visited {
+    color: black;
+}
+
+header > nav a.nav-link-active {
+    &, &:visited {
+        color: var(--color-accent-1);
+    }
+}
+
+.content > header {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+    border-bottom: 1px solid black;
+
+    font-weight: bold;
+    /* get around the specifity of the intra-site link selector :not([href^=http]) */
+    a[href] { text-decoration: none; }
+
+    > nav ul {
+        list-style-type: none;
+        padding: 0 1em;
+        display: flex;
+        flex-direction: row;
+        gap: 2em;
+    }
+}
+
+footer {
+    font-size: .75em;
+    color: gray;
+    margin-top: 3em;
+    border-top: 1px solid black;
+
+    a, a:visited, a[href] {
+        color: gray;
+
+        &:hover {
+            background-color: transparent;
+            text-decoration: 2px solid gray underline;
+        }
+    }
+
+    > nav > ul {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: .5em;
+
+        > li > ul {
+            list-style-type: none;
+            font-style: italic;
+        }
+    }
+}
+
+@media only screen and (min-width: 850px) {
+    body {
+        background-color: var(--color-bg);
+        margin: 10px;
+    }
+
+    .content {
+        font-size: 14pt;
+        grid-template-columns: 160px 650px;
+        border: 2px solid black;
+        box-shadow: 15px 15px 0px #b2d2d6;
+        margin-bottom: 5em;
+
+        > header {
+            padding-right: 1em;
+            border: none;
+            border-right: 1px solid black;
+            > nav > ul {
+                text-align: right;
+                flex-direction: column;
+                gap: 0.5em;
+                padding: 0;
+            }
+        }
+
+        footer > nav > ul {
+            flex-direction: row;
+            > * {
+                flex: 1 fit-content;
+                > ul {
+                    padding: 0;
+                    padding-left: 1.3em;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1100px) {
+    .content {
+        grid-template-columns: 160px 900px;
+    }
+}
+
+/* }}} Layout */

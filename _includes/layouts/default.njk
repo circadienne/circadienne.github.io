@@ -1,0 +1,87 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    {% if displayTitle == "Home" %}
+        {% set displayTitle = "Circadienne" %}
+    {% else %}
+        {% set displayTitle = title | striptags + " :: Circadienne" %}
+    {% endif %}
+
+    <title>{{ displayTitle }}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/style.css">
+    {% if cssInclude %}
+        {% for h in cssInclude %}
+            <link rel="stylesheet" href="{{ h }}">
+        {% endfor %}
+    {% endif %}
+    {% if hasCodeblocks %}
+        <link rel="stylesheet" href="/css/code.css">
+        <script src="/js/interactive-codeblock.js" defer></script>
+    {% endif %}
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    {# sharing stuff #}
+    <meta property="og:title" content="{{ displayTitle }}">
+    <meta name="twitter:title" content="{{ displayTitle }}">
+    {% if subtitle %}
+        <meta property="og:description" content="{{ subtitle }}">
+    {% endif %}
+    {# <meta property="og:url" content="{{ data.url }}"> #}
+</head>
+
+<body>
+    <div class="content">
+        {% macro samples(collection) %}
+            {% set maxSamples = 3 %}
+            <ul class="samples">
+                {% set items2 = collections[collection] | reverse | slice(maxSamples) %}
+                {% for items in items2 %}
+                    {% for item in items %}
+                        <li><a href="{{ item.url }}">{{ item.data.title | safe }}</a></li>
+                    {% endfor %}
+                {% endfor %}
+                {% if items2 | length > maxSamples %}
+                    <li><a href="/{{ collection }}/">More...</a></li>
+                {% endif %}
+            </ul>
+        {% endmacro %}
+
+        {% macro navLinkAttrs(url, tag) %}{#
+            #} href="{{ url }}" {% if page.url == url or (tags and tags | contains(tag)) %} class="nav-link-active" {% endif %}{#
+        #}{% endmacro %}
+
+        {% macro nav(detail, class) %}
+            <nav>
+                <ul>
+                    <li><a {{ navLinkAttrs("/") }}>Home</a></li>
+                    <li><a {{ navLinkAttrs("/blog/", "blog") }}>Blog</a>{% if detail %} {{ samples("blog") }}{% endif %}</li>
+                    <li><a {{ navLinkAttrs("/writing/", "writing") }}>Writing</a>{% if detail %} {{ samples("writing") }}{% endif %}</li>
+                    <li><a {{ navLinkAttrs("/project/", "project") }}>Projects</a>{% if detail %} {{ samples("project") }}{% endif %}</li>
+                    <li><a {{ navLinkAttrs("/links/") }}>Links</a></li>
+                    <li><a {{ navLinkAttrs("/about/") }}>About</a>{% if detail %} <ul class="samples"><li><a href="/about/#contact">Contact</a></li></ul>{% endif %}</li>
+                </ul>
+            </nav>
+        {% endmacro %}
+
+        <header class="layout-left">
+            {{ nav(false, "layout-left") }}
+        </header>
+
+        <div class="layout-main">
+            <main{% if lang %} lang="{{ lang }}"{% endif %}>
+                {{ content }}
+            </main>
+
+            <footer>
+                {{ nav(true) }}
+                <p>This website is powered by <a href="https://www.11ty.dev/">Eleventy</a> and is licenced under the MIT licence. All the code is available on the <a href="https://github.com/circadienne/circadienne.github.io">Github repository.</a> Have any questions? Found a mistake? <a href="/about/#contact">Contact me.</a></p>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>

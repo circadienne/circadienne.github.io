@@ -1,0 +1,7 @@
+{
+    "tags": ["post", "project"],
+    "parent": {
+        "title": "Projects",
+        "url": "/project/"
+    }
+}

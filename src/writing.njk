@@ -1,0 +1,12 @@
+---
+title: Writing
+---
+
+<h1 id="title">Writing</h1>
+
+{% set posts = collections.writing %}
+<ol class="post-thumb-list">
+{% for post in posts | reverse %}
+    {{ post | postThumbnail | safe }}
+{% endfor %}
+</ol>

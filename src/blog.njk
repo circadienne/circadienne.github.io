@@ -1,0 +1,13 @@
+---
+title: Blog
+tags: []
+---
+
+<h1 id="title">Blog</h1>
+
+{% set posts = collections.blog %}
+<ol class="post-thumb-list">
+{% for post in posts | reverse %}
+    {{ post | postThumbnail | safe }}
+{% endfor %}
+</ol>

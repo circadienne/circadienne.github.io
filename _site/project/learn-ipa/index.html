@@ -1,0 +1,216 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    
+        
+    
+
+    <title>Learn the IPA :: Circadienne</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/style.css">
+    
+        
+            <link rel="stylesheet" href="./style.css">
+        
+    
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    
+    <meta property="og:title" content="Learn the IPA :: Circadienne">
+    <meta name="twitter:title" content="Learn the IPA :: Circadienne">
+    
+        <meta property="og:description" content="A flashcard-style tool for learning the International Phonetic Alphabet.">
+    
+    
+</head>
+
+<body>
+    <div class="content">
+        
+
+        
+
+        
+
+        <header class="layout-left">
+            
+            <nav>
+                <ul>
+                    <li><a  href="/" >Home</a></li>
+                    <li><a  href="/blog/" >Blog</a></li>
+                    <li><a  href="/writing/" >Writing</a></li>
+                    <li><a  href="/project/"  class="nav-link-active" >Projects</a></li>
+                    <li><a  href="/links/" >Links</a></li>
+                    <li><a  href="/about/" >About</a></li>
+                </ul>
+            </nav>
+        
+        </header>
+
+        <div class="layout-main">
+            <main>
+                
+<header>
+    
+        <aside class="data">
+            
+                <nav>Filed under: <a href="/project/">Projects</a></nav>
+            
+            
+            
+                <ul class='data-tags'></ul>
+            
+        </aside>
+    
+
+    <hgroup>
+        <h1 id="title">Learn the IPA</h1>
+        
+            <p class="subtitle">A flashcard-style tool for learning the International Phonetic Alphabet.</p>
+        
+    </hgroup>
+</header>
+
+
+<div class="status">
+    <div class="status-control">
+        <fieldset>
+            <legend>Symbol types</legend>
+            <input type="checkbox" id="in-symtype-vowels" data-include-symtype="vowels" checked>
+            <label for="in-symtype-vowels">vowels</label>
+            <input type="checkbox" id="in-symtype-consonants" data-include-symtype="consonants" checked>
+            <label for="in-symtype-consonants">consonants</label>
+            <input type="checkbox" id="in-symtype-near-open-vowels" data-include-symtype="near-open-vowels" checked>
+            <label for="in-symtype-near-open-vowels">near-open/near-close vowels</label>
+        </fieldset>
+        <fieldset>
+            <legend>Control</legend>
+            <button id="button-restart">Restart</button>
+        </fieldset>
+    </div>
+
+    <div id="symbol-display"></div>
+    <div id="status-info">Select where the symbol goes.</div>
+    <div id="status-selected"></div>
+    <div class="buttons">
+        <button id="button-mark-learned">Learned</button>
+        <button id="button-mark-to-learn">To learn</button>
+        <button id="button-reveal">Reveal</button>
+    </div>
+    <div id="status-counter-display"></div>
+</div>
+
+<div class="tabs" id="tabs">
+    <div class="tab-bar">
+        <input type="radio" name="tab-table" id="radio-tab-vowel" data-tab-id="tab-vowel" checked>
+        <label for="radio-tab-vowel">Vowels</label><input type="radio" name="tab-table" id="radio-tab-consonant" data-tab-id="tab-consonant"><label for="radio-tab-consonant">Consonants</label><div></div>
+    </div>
+
+    <div class="tab" id="tab-vowel">
+        <table id="table-vowel-map"></table>
+    </div>
+
+    <div class="tab" hidden id="tab-consonant">
+        <table id="table-consonant-map"></table>
+    </div>
+</div>
+
+<style>
+img {
+    width: 100%;
+}
+</style>
+
+<details>
+    <summary>IPA Chart</summary>
+
+    <a target="_blank" href="https://www.internationalphoneticassociation.org/IPAcharts/IPA_charts_TI/IPA_charts_TI.html#eng">
+        Click here for the interactive chart.
+    </a>
+    <a target="_blank" href="https://www.internationalphoneticassociation.org/IPAcharts/IPA_charts_E/images/IPA_Kiel_0300.png">
+        <img src="https://www.internationalphoneticassociation.org/IPAcharts/IPA_charts_E/images/IPA_Kiel_0300.png" alt="IPA Chart image">
+    </a>
+</details>
+
+<script src="js/locale.js"></script>
+<script src="js/symbols.js"></script>
+<script src="js/script.js"></script>
+
+
+            </main>
+
+            <footer>
+                
+            <nav>
+                <ul>
+                    <li><a  href="/" >Home</a></li>
+                    <li><a  href="/blog/" >Blog</a> 
+            
+            <ul class="samples">
+                
+                
+                    
+                        <li><a href="/blog/make-your-website/">Make Your Own Website</a></li>
+                    
+                
+                    
+                        <li><a href="/blog/louis-theroux-manosphere/">Men Who Hate Women</a></li>
+                    
+                
+                    
+                
+                
+            </ul>
+        </li>
+                    <li><a  href="/writing/" >Writing</a> 
+            
+            <ul class="samples">
+                
+                
+                    
+                        <li><a href="/writing/spirits/">Spirits</a></li>
+                    
+                
+                    
+                        <li><a href="/writing/death-of-yun-is/">On the Death of Yun-Is</a></li>
+                    
+                
+                    
+                        <li><a href="/writing/city-of-doubles/">The City of Doubles</a></li>
+                    
+                
+                
+            </ul>
+        </li>
+                    <li><a  href="/project/"  class="nav-link-active" >Projects</a> 
+            
+            <ul class="samples">
+                
+                
+                    
+                        <li><a href="/project/learn-ipa/">Learn the IPA</a></li>
+                    
+                
+                    
+                
+                    
+                
+                
+            </ul>
+        </li>
+                    <li><a  href="/links/" >Links</a></li>
+                    <li><a  href="/about/" >About</a> <ul class="samples"><li><a href="/about/#contact">Contact</a></li></ul></li>
+                </ul>
+            </nav>
+        
+                <p>This website is powered by <a href="https://www.11ty.dev/">Eleventy</a> and is licenced under the MIT licence. All the code is available on the <a href="https://github.com/circadienne/circadienne.github.io">Github repository.</a> Have any questions? Found a mistake? <a href="/about/#contact">Contact me.</a></p>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>

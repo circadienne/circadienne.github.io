@@ -1,0 +1,73 @@
+---
+title: Learn the IPA
+subtitle: "A flashcard-style tool for learning the International Phonetic Alphabet."
+cssInclude: [ './style.css' ]
+layout: "layouts/post"
+---
+
+<div class="status">
+    <div class="status-control">
+        <fieldset>
+            <legend>Symbol types</legend>
+            <input type="checkbox" id="in-symtype-vowels" data-include-symtype="vowels" checked>
+            <label for="in-symtype-vowels">vowels</label>
+            <input type="checkbox" id="in-symtype-consonants" data-include-symtype="consonants" checked>
+            <label for="in-symtype-consonants">consonants</label>
+            <input type="checkbox" id="in-symtype-near-open-vowels" data-include-symtype="near-open-vowels" checked>
+            <label for="in-symtype-near-open-vowels">near-open/near-close vowels</label>
+        </fieldset>
+        <fieldset>
+            <legend>Control</legend>
+            <button id="button-restart">Restart</button>
+        </fieldset>
+    </div>
+
+    <div id="symbol-display"></div>
+    <div id="status-info">Select where the symbol goes.</div>
+    <div id="status-selected"></div>
+    <div class="buttons">
+        <button id="button-mark-learned">Learned</button>
+        <button id="button-mark-to-learn">To learn</button>
+        <button id="button-reveal">Reveal</button>
+    </div>
+    <div id="status-counter-display"></div>
+</div>
+
+<div class="tabs" id="tabs">
+    <div class="tab-bar">
+        <input type="radio" name="tab-table" id="radio-tab-vowel" data-tab-id="tab-vowel" checked>
+        <label for="radio-tab-vowel">Vowels</label>{#
+        #}<input type="radio" name="tab-table" id="radio-tab-consonant" data-tab-id="tab-consonant">{#
+        #}<label for="radio-tab-consonant">Consonants</label>{#
+        #}<div></div>
+    </div>
+
+    <div class="tab" id="tab-vowel">
+        <table id="table-vowel-map"></table>
+    </div>
+
+    <div class="tab" hidden id="tab-consonant">
+        <table id="table-consonant-map"></table>
+    </div>
+</div>
+
+<style>
+img {
+    width: 100%;
+}
+</style>
+
+<details>
+    <summary>IPA Chart</summary>
+
+    <a target="_blank" href="https://www.internationalphoneticassociation.org/IPAcharts/IPA_charts_TI/IPA_charts_TI.html#eng">
+        Click here for the interactive chart.
+    </a>
+    <a target="_blank" href="https://www.internationalphoneticassociation.org/IPAcharts/IPA_charts_E/images/IPA_Kiel_0300.png">
+        <img src="https://www.internationalphoneticassociation.org/IPAcharts/IPA_charts_E/images/IPA_Kiel_0300.png" alt="IPA Chart image">
+    </a>
+</details>
+
+<script src="js/locale.js"></script>
+<script src="js/symbols.js"></script>
+<script src="js/script.js"></script>

@@ -1,0 +1,8 @@
+{
+    "tags": ["post", "writing"],
+    "layout": "layouts/post.njk",
+    "parent": {
+        "title": "Writing",
+        "url": "/writing/"
+    }
+}

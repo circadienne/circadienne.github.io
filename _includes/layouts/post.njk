@@ -1,0 +1,28 @@
+---
+layout: layouts/default.njk
+---
+
+<header>
+    {% if date or tags %}
+        <aside class="data">
+            {% if parent %}
+                <nav>Filed under: <a href="{{ parent.url }}">{{ parent.title }}</a></nav>
+            {% endif %}
+            {% if date %}
+                {{ date | date }}
+            {% endif %}
+            {% if tags %}
+                {{ tags | tagDisplay }}
+            {% endif %}
+        </aside>
+    {% endif %}
+
+    <hgroup>
+        <h1 id="title">{{ title }}</h1>
+        {% if subtitle %}
+            <p class="subtitle">{{ subtitle }}</p>
+        {% endif %}
+    </hgroup>
+</header>
+
+{{ content }}

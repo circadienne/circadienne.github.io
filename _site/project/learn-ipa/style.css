@@ -1,0 +1,44 @@
+#symbol-display {
+    font-size: 5.5rem;
+    text-align: center;
+    min-height: 7rem;
+
+    &::before, &::after { color: #444 }
+    &::before { content: '[' }
+    &::after { content: ']' }
+}
+
+
+fieldset {
+    display: inline-block;
+}
+
+th {
+    padding: .2em;
+}
+
+td {
+    border-left: none;
+    border-right: none;
+}
+
+.status {
+    text-align: center;
+    top: 0;
+}
+
+.buttons {
+    margin-top: 1em; margin-bottom: 1em;
+}
+
+button {
+    border: none;
+    padding: .5em 1em;
+    cursor: pointer;
+}
+
+#button-mark-learned, .button-correct { background-color: greenyellow; }
+#button-mark-to-learn, .button-incorrect {
+    color: white;
+    background-color: red;
+}

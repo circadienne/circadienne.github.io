@@ -1,0 +1,42 @@
+---
+title: Home
+cssInclude: [ '/css/index.css' ]
+---
+
+<h1 id="title">Circadienne</h1>
+
+<p>This is the place I go to when I’m procrasting on something. Here are the things you can find on this website:</p>
+
+<section class="post-thumb-index">
+    {% macro samples(collection) %}
+        {% set maxSamples = 3 %}
+        <ul class="post-thumb-list">
+            {% set items2 = collections[collection] | reverse | slice(maxSamples) %}
+            {% for items in items2 %}
+                {% for item in items %}
+                    {{ item | postThumbnail | safe }}
+                {% endfor %}
+            {% endfor %}
+            {% if items2 | length > maxSamples %}
+                <li><a href="/{{ collection }}/">More...</a></li>
+            {% endif %}
+        </ul>
+    {% endmacro %}
+
+    <div>
+        <h1>Blog</h1>
+        {{ samples("blog") }}
+    </div>
+
+    <div>
+        <h1>Writing</h1>
+        {{ samples("writing") }}
+    </div>
+
+    <div>
+        <h1>Projects</h1>
+        {{ samples("project") }}
+    </div>
+</section>
+
+<p>If you want to know more about this website, go to <a href="/about/">the about page.</a> In the <a href="/links/"><em>Links</em></a> section you will find a list of websites I like.</p>

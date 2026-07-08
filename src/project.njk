@@ -1,0 +1,10 @@
+---
+title: Projects
+---
+
+<h1 id="title">Projects</h1>
+<ul class="post-thumb-list">
+    {% for item in collections.project | reverse %}
+        {{ item | postThumbnail | safe }}
+    {% endfor %}
+</ul>

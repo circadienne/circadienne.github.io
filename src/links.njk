@@ -1,0 +1,71 @@
+---
+title: Links
+subtitle: A collection of websites I like.
+layout: layouts/post
+---
+
+<style>
+    .gallery {
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1.3em;
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.2em;
+            text-decoration: underline;
+        }
+
+        .entry-url {
+            font-size: .8em;
+            color: var(--color-accent-1);
+            margin: 0;
+            margin-top: .2em;
+        }
+
+        q { font-style: italic }
+    }
+</style>
+
+{% macro entry(url, name, desc) %}
+        <li>
+            <a href="{{ url }}">
+                <hgroup>
+                    <h1>{{ name }}</h1>
+                    <p class="entry-url">{{ url | prettyURL }}</p>
+                </hgroup>
+            </a>
+            <article>{{ desc }}</article>
+        </li>
+{% endmacro %}
+
+<ul class="gallery">
+    {{ entry("https://languagehat.com",
+        "Languagehat", "A blog about languages run by a retired copyeditor.") }}
+    {{ entry("https://jkorpela.fi/finnish/index.html", "Handbook of Finnish",
+        "A freely-available highly detailed Finnish grammar. It came useful to me in writing my Bachelors’ thesis.") }}
+    {{ entry("http://steen.free.fr/interslavic/index.html",
+        "Medžuslovjansky Jezyk – Меджусловјанскы језык – Interslavic",
+        "The main website of the Interslavic project. Interslavic is a <dfn>constructed language</dfn> whose goal is to be easily understood and learnt by people who speak various Slavic languages. If you already speak a Slavic language, try to understand the first sentence on the website, written entirely in Interslavic: <q>Medžuslovjansky jest jezyk, ktory Slovjani raznyh narodnostij koristajut, da by komunikovali jedin s drugym.</q>") }}
+    {{ entry("https://chridd.nfshost.com/diachronica/", "Searchable Index Diachronica",
+        "A searchable version of the massive <cite>Index Diachronica</cite>, a document containing a comprehensive list of diachronic sound changes.") }}
+    {{ entry("https://datashare.ed.ac.uk/handle/10283/387", "The North Wind and the Sun Database",
+        "A database of recordings of Aesop’s <cite>The North Wind and the Sun</cite> fable realised in the 1950’s and 1960’s in a variety of world languages.") }}
+    {{ entry("https://www.etimo.it", "Dizionario Etimologico",
+        "Una versione digitale del <cite>Vocabolario etimologico della lingua italiana</cite> di Ottorino Pianigiani.") }}
+    {{ entry("https://taras-shevchenko.storinka.org",
+        "Taras Shevchenko’s Poems, Works and Life Story in English",
+        "A collection of English translations of Ukrainian poet Taras Shevchenko’s works.") }}
+    {{ entry("https://joyceproject.com", "The Joyce Project", "A meticulously annotated version of James Joyce’s classic novel <cite>Ulysses</cite>.") }}
+    {{ entry("https://wasteland.windingway.org", "<cite>The Waste Land</cite> :: T. S. Eliot",
+        "An annotated online version of T.S. Eliot’s <cite>The Waste Land</cite>.") }}
+    {{ entry("https://ufo.fme.vutbr.cz/JWMH/", "Werich &amp; Horníček: <cite>Předscény</cite>",
+        "Pro mé spřízněné fanoušky Wericha a Horníčka (potažmo Wericha a Voskovce), tato klasická stránka obsahuje přepisy všech jejich forbín.") }}
+</ul>

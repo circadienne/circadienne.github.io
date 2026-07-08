@@ -1,0 +1,19 @@
+---
+title: 404 Not Found
+permalink: 404.html
+---
+
+<h1 id="title">404: Not Found</h1>
+
+<p>
+    The requested URL <span id="this-url-parens" hidden>(<code class="code-inline" id="this-url"></code>)</span> could not be found. It might have been moved or deleted. If you ended up here by following a link, consider reporting the <a href="https://en.wikipedia.org/wiki/Link_rot">rotten link</a> to the website owner/administrator. If you were brought here by a link on this website, don’t hesitate to <a href="/about/#contact">contact me!</a>
+</p>
+
+<!-- spacer, otherwise it looks weird imo -->
+<div style="height:10em"></div>
+
+<script>
+    const entries = window.navigation.entries();
+    document.getElementById("this-url").innerText = entries[entries.length-1].url;
+    document.getElementById("this-url-parens").hidden = false;
+</script>

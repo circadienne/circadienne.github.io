@@ -1,0 +1,8 @@
+{
+    "tags": [ "post", "blog" ],
+    "layout": "layouts/post.njk",
+    "parent": {
+        "title": "Blog",
+        "url": "/blog/"
+    }
+}

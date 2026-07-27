@@ -22,7 +22,11 @@ layout: layouts/default.njk
         {% if subtitle %}
             <p class="subtitle">{{ subtitle }}</p>
         {% endif %}
-    </hgroup>
+    </hgroup>{#
+
+    #}{% if original %}
+        <p class="original">Translated from: <a href="{{ original.link }}"><cite>{{ original.title }}</cite> ({{ original.author }})</a></p>
+    {% endif %}
 </header>
 
 {{ content }}

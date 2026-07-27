@@ -1,0 +1,256 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    
+        
+    
+
+    <title>Calcolo media ponderata :: Circadienne</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/style.css">
+    
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    
+    <meta property="og:title" content="Calcolo media ponderata :: Circadienne">
+    <meta name="twitter:title" content="Calcolo media ponderata :: Circadienne">
+    
+        <meta property="og:description" content="Uno strumento per studentɛ">
+    
+    
+</head>
+
+<body>
+    <div class="content">
+        
+
+        
+
+        
+
+        <header class="layout-left">
+            
+            <nav>
+                <ul>
+                    <li><a  href="/" >Home</a></li>
+                    <li><a  href="/blog/" >Blog</a></li>
+                    <li><a  href="/writing/" >Writing</a></li>
+                    <li><a  href="/project/"  class="nav-link-active" >Projects</a></li>
+                    <li><a  href="/links/" >Links</a></li>
+                    <li><a  href="/about/" >About</a></li>
+                </ul>
+            </nav>
+        
+        </header>
+
+        <div class="layout-main">
+            <main>
+                
+<header>
+    
+        <aside class="data">
+            
+                <nav>Filed under: <a href="/project/">Projects</a></nav>
+            
+            
+            
+                <ul class='data-tags'></ul>
+            
+        </aside>
+    
+
+    <hgroup>
+        <h1 id="title">Calcolo media ponderata</h1>
+        
+            <p class="subtitle">Uno strumento per studentɛ</p>
+        
+    </hgroup>
+</header>
+
+
+<details>
+    <summary>Come si calcola la media?</summary>
+
+    <p>Di ogni esame, lǝ studentǝ può ricevere un voto che va da 18 (il voto minimo) fino a 30 e lode (30L). Numericamente, 30 e lode corrisponde a 31. Ogni esame ha anche un determinato numero di crediti assegnati (detti <dfn>CFU</dfn>) corrispondenti al numero di ore di studio necessarie per passarlo. In termini semplici, possiamo dire che un esame da 9 crediti sarà più impegnativo di un esame da 3 crediti.</p>
+
+    <p>Per fare la media si prende la somma del prodotto tra il voto (da 18 a 31) e i CFU divisa per il prodotto di tutti i CFU. Quindi, se lǝ studentǝ ha sostenuto due esami, uno da 6 crediti con il voto finale di 30 e uno da 9 crediti con il voto finale di 26, la media risultante sarà uguale a <code>(30 × 6 + 26 × 9) ÷ (6 + 9) = 27,6</code>.</p>
+</details>
+
+<details>
+    <summary>Come funzione il calcolatore?</summary>
+
+    <p>In alto si trova la sezione dei <dfn>dati di partenza</dfn>. Qui si può immettere la propria media e il numero di crediti raggiunti. Per aggiungere un nuovo esame nella calcolatrice, premere il pulsante “Aggiungi esame” a destra. Il nome dell’esame può essere modificato. La media calcolata sarà scritta in basso e verrà ricalcolata ogni volta che uno dei dati rilevanti viene modificato.</p>
+
+    <p>Se l’utente ha una determinata media da raggiungere (per es. 26), la può immettere nel campo “Target media minima” nella sezione <dfn>Risultati</dfn> in basso. Se la media risultante è minore della media target, sarà evidenziata in rosso.</p>
+</details>
+
+<style>
+    .error {
+        color: red;
+    }
+
+    input.error {
+        color: inherit;
+        border-color: red;
+        border-style: solid;
+        outline-color: red;
+    }
+
+    .control {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1em;
+    }
+
+    #control-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #exams-in {
+        margin: 2em 0;
+
+        div {
+            display: grid;
+            grid-template-columns: max-content 1fr max-content 1fr;
+            grid-template-rows: max-content max-content;
+            grid-template-areas:
+                "header header header header"
+                "labelcfu cfu labelgrade grade";
+            gap: .5em;
+            margin: .8em 5em;
+
+            h2 {
+                grid-area: header;
+                margin: 0;
+            }
+        }
+    }
+
+    output {
+        display: grid;
+        grid-template-columns: repeat(4, max-content);
+        gap: .5em;
+        align-items: end;
+
+        span {
+            font-family: var(--font-sans);
+            font-size: 1.25em;
+        }
+    }
+</style>
+
+<div id="control-container">
+    <fieldset id="control-original" class="control">
+        <legend>Dati di partenza</legend>
+        <label for="control-original-avg">Media di partenza:</label>
+        <input type="number" id="control-original-avg">
+        <label for="control-original-cfu">Crediti di partenza:</label>
+        <input type="number" id="control-original-cfu">
+    </fieldset>
+
+    <fieldset id="control-exams" class="control">
+        <legend>Esami</legend>
+        <button id="control-exams-add">Aggiungi esame</button>
+        <button id="control-exams-clear">Rimuovi tutti esami</button>
+    </fieldset>
+</div>
+
+<div id="exams-in"></div>
+
+<fieldset>
+    <legend>Risultati</legend>
+    <output>
+        <label for="result-avg">Media ponderata:</label>
+        <span id="result-avg">N/A</span>
+        <label for="result-grad">Voto di laurea:</label>
+        <span id="result-grad">N/A</span>
+        <label for="result-avg-min">Target media minima:</label>
+        <input type="number" id="result-avg-min">
+        <label for="result-cfu">CFU totali:</label>
+        <span id="result-cfu">N/A</span>
+    </output>
+</fieldset>
+
+<script src="./script.js"></script>
+
+
+            </main>
+
+            <footer>
+                
+            <nav>
+                <ul>
+                    <li><a  href="/" >Home</a></li>
+                    <li><a  href="/blog/" >Blog</a> 
+            
+            <ul class="samples">
+                
+                
+                    
+                        <li><a href="/blog/make-your-website/">Make Your Own Website</a></li>
+                    
+                
+                    
+                        <li><a href="/blog/louis-theroux-manosphere/">Men Who Hate Women</a></li>
+                    
+                
+                    
+                
+                
+            </ul>
+        </li>
+                    <li><a  href="/writing/" >Writing</a> 
+            
+            <ul class="samples">
+                
+                
+                    
+                        <li><a href="/writing/spirits/">Spirits</a></li>
+                    
+                
+                    
+                        <li><a href="/writing/death-of-yun-is/">On the Death of Yun-Is</a></li>
+                    
+                
+                    
+                        <li><a href="/writing/city-of-doubles/">The City of Doubles</a></li>
+                    
+                
+                
+            </ul>
+        </li>
+                    <li><a  href="/project/"  class="nav-link-active" >Projects</a> 
+            
+            <ul class="samples">
+                
+                
+                    
+                        <li><a href="/project/calcolo-media-uni/">Calcolo media ponderata</a></li>
+                    
+                
+                    
+                        <li><a href="/project/learn-ipa/">Learn the IPA</a></li>
+                    
+                
+                    
+                
+                
+            </ul>
+        </li>
+                    <li><a  href="/links/" >Links</a></li>
+                    <li><a  href="/about/" >About</a> <ul class="samples"><li><a href="/about/#contact">Contact</a></li></ul></li>
+                </ul>
+            </nav>
+        
+                <p>This website is powered by <a href="https://www.11ty.dev/">Eleventy</a> and is licenced under the MIT licence. All the code is available on the <a href="https://github.com/circadienne/circadienne.github.io">Github repository.</a> Have any questions? Found a mistake? <a href="/about/#contact">Contact me.</a></p>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>

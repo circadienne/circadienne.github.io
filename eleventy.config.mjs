@@ -26,6 +26,7 @@ export default async function (eleventyConfig) {
     eleventyConfig.addFilter("markdown", (content) => {
         return mdLib.render(content);
     });
+    eleventyConfig.addFilter("firstN", (list, n) => list.filter((_, i) => i < n));
     eleventyConfig.addFilter("date", filters.dateFilter);
     eleventyConfig.addFilter("tagDisplay", filters.tagFilter);
     eleventyConfig.addFilter("postThumbnail", filters.postThumbnailFilter);

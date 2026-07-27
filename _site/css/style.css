@@ -30,6 +30,7 @@ html {
     --color-accent-1: #e344bc;
     --color-accent-2: #ffddfc;
     --color-bg: #b2e1e8;
+    --font-sans: -apple-system, system-ui, sans-serif;
 }
 
 /* Basic {{{ */
@@ -38,6 +39,10 @@ body {
     font-family: "CharisSILW", serif;
     font-size: 12pt;
     margin: 0;
+}
+
+label, legend, button, input {
+    font-family: var(--font-sans);
 }
 
 .content {
@@ -152,14 +157,21 @@ h1#title {
     transform: skew(0.1rad, 0.02rad);
 }
 
-main > header > hgroup {
+main > header {
     margin-bottom: 3em;
 
-    /* Post subtitle */
-    > p {
-        font-size: 1.3rem;
+    .original {
         text-align: center;
-        margin: .5em;
+        font-style: italic;
+    }
+
+    > hgroup {
+        /* Post subtitle */
+        > p {
+            font-size: 1.3rem;
+            text-align: center;
+            margin: .5em;
+        }
     }
 }
 
@@ -261,6 +273,8 @@ table {
 
 /* thumbnail list */
 .post-thumb-list {
+    list-style: none;
+
     a {
         display: block;
         text-decoration: none;

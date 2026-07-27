@@ -11,13 +11,11 @@ cssInclude: [ '/css/index.css' ]
     {% macro samples(collection) %}
         {% set maxSamples = 3 %}
         <ul class="post-thumb-list">
-            {% set items2 = collections[collection] | reverse | slice(maxSamples) %}
-            {% for items in items2 %}
-                {% for item in items %}
-                    {{ item | postThumbnail | safe }}
-                {% endfor %}
+            {% set items = collections[collection] | reverse | firstN(maxSamples) %}
+            {% for item in items %}
+                <li>{{ item | postThumbnail | safe }}</li>
             {% endfor %}
-            {% if items2 | length > maxSamples %}
+            {% if collections[collection] | length > maxSamples %}
                 <li><a href="/{{ collection }}/">More...</a></li>
             {% endif %}
         </ul>

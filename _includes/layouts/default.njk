@@ -31,7 +31,7 @@
     <meta property="og:title" content="{{ displayTitle }}">
     <meta name="twitter:title" content="{{ displayTitle }}">
     {% if subtitle %}
-        <meta property="og:description" content="{{ subtitle }}">
+        <meta property="og:description" content="{{ subtitle | striptags }}">
     {% endif %}
     {# <meta property="og:url" content="{{ data.url }}"> #}
 </head>

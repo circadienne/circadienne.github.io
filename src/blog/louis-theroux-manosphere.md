@@ -2,6 +2,7 @@
 title: Men Who Hate Women
 subtitle: Louis Theroux’s voyage into the manosphere did all it could have achieved
 date: 2026-03-15
+tags: review
 ---
 
 This year’s _Louis Theroux: Into the Manosphere_ isn’t exactly groundbreaking; what the “manosphere” is, how many men have been entranced by it and how bigoted its views are is hardly news to most people with even a passing familiarity with the internet. But this isn’t everyone. For many people, this documentary will be the first time they’re exposed to what the movement actually believes, as opposed to the sanitised image they’ve tried to present.

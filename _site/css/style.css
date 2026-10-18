@@ -41,7 +41,7 @@ body {
     margin: 0;
 }
 
-label, legend, button, input {
+label:not(.spoiler), legend, button, input {
     font-family: var(--font-sans);
 }
 
@@ -67,8 +67,12 @@ q {
 
 .sidenote {
     margin: 2em 2em;
-    font-style: italic;
     font-size: .95em;
+}
+
+iframe {
+    display: block;
+    margin: 0 auto;
 }
 
 fieldset { border-radius: 5px }
@@ -151,13 +155,12 @@ input:checked + .spoiler {
 /* Post title */
 h1#title {
     font-size: 2.2em;
-    text-align: center;
-    padding: 0 1em;
     margin: 0;
-    transform: skew(0.1rad, 0.02rad);
 }
 
 main > header {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 3em;
 
     .original {
@@ -166,11 +169,12 @@ main > header {
     }
 
     > hgroup {
+        flex-grow: 1;
+
         /* Post subtitle */
         > p {
             font-size: 1.3rem;
-            text-align: center;
-            margin: .5em;
+            margin: .5em 0;
         }
     }
 }
@@ -237,7 +241,7 @@ table {
 }
 
 .data .data-tags {
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     justify-content: end;
     list-style: none;
@@ -245,6 +249,7 @@ table {
     margin: 0;
 
     li { box-sizing: border-box; }
+    li + li::before { content: ", " }
 }
 
 .post-thumb-list {
@@ -338,6 +343,12 @@ table {
     .tab {
         padding: .5em;
     }
+}
+
+/* Used for aligning broken lines in poems */
+.blind {
+    color: transparent;
+    user-select: none;
 }
 
 /* }}} Basic */
@@ -436,6 +447,14 @@ footer {
                 flex-direction: column;
                 gap: 0.5em;
                 padding: 0;
+            }
+        }
+
+        main > header {
+            flex-direction: row;
+
+            > .data {
+                padding-top: 1em;
             }
         }
 

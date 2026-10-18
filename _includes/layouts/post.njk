@@ -3,7 +3,17 @@ layout: layouts/default.njk
 ---
 
 <header>
-    {% if date or tags %}
+    <hgroup>
+        <h1 id="title">{{ title }}</h1>
+        {% if subtitle %}
+            <p class="subtitle">{{ subtitle }}</p>
+        {% endif %}
+        {% if original %}
+            <p class="original">Translated from: <a href="{{ original.link }}"><cite>{{ original.title }}</cite> ({{ original.author }})</a></p>
+        {% endif %}
+    </hgroup> {#
+
+    #}{% if date or tags %}
         <aside class="data">
             {% if parent %}
                 <nav>Filed under: <a href="{{ parent.url }}">{{ parent.title }}</a></nav>
@@ -11,21 +21,10 @@ layout: layouts/default.njk
             {% if date %}
                 {{ date | date }}
             {% endif %}
-            {% if tags %}
-                {{ tags | tagDisplay }}
+            {% if tags and tags | filterDisplayedTags | length %}
+                <span class="tag-line">Tagged as: {{ tags | filterDisplayedTags | tagDisplay }}</span>
             {% endif %}
         </aside>
-    {% endif %}
-
-    <hgroup>
-        <h1 id="title">{{ title }}</h1>
-        {% if subtitle %}
-            <p class="subtitle">{{ subtitle }}</p>
-        {% endif %}
-    </hgroup>{#
-
-    #}{% if original %}
-        <p class="original">Translated from: <a href="{{ original.link }}"><cite>{{ original.title }}</cite> ({{ original.author }})</a></p>
     {% endif %}
 </header>
 

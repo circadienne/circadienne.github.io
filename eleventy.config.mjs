@@ -2,6 +2,10 @@ import markdownIt from "markdown-it";
 import markdownFootnotePlugin from 'markdown-it-footnote';
 import * as filters from "./filters/filters.mjs";
 
+function uid() {
+    return Math.random().toString(16).slice(2);
+}
+
 export default async function (eleventyConfig) {
     eleventyConfig.addFilter("debug", console.log);
     eleventyConfig.setNunjucksEnvironmentOptions({
@@ -28,6 +32,7 @@ export default async function (eleventyConfig) {
     });
     eleventyConfig.addFilter("firstN", (list, n) => list.filter((_, i) => i < n));
     eleventyConfig.addFilter("date", filters.dateFilter);
+    eleventyConfig.addFilter("filterDisplayedTags", filters.filterDisplayedTags);
     eleventyConfig.addFilter("tagDisplay", filters.tagFilter);
     eleventyConfig.addFilter("postThumbnail", filters.postThumbnailFilter);
     eleventyConfig.addFilter("ipa", filters.ipa);
@@ -56,6 +61,31 @@ export default async function (eleventyConfig) {
             return `<details class="sidenote"><summary>${heading}</summary>${text}</details>`
         return `<aside class="sidenote">${text}</aside>`;
     });
+
+    eleventyConfig.addPairedShortcode("multilang", (text, ...langs) => {
+        const parts = text.split('===');
+        console.assert(parts.length === langs.length);
+
+        const tabsId = uid();
+        const tabIds = [];
+        let res = `<div class="tabs">
+            <div class="tab-bar">\n`;
+        for (let i = 0; i < langs.length; i++) {
+            const tabButtonId = uid();
+            const l = langs[i];
+            const tabId = tabsId + '-' + langs[i];
+            tabIds.push(tabId);
+            res += `<input type="radio" name="tab-radio-${tabsId}" id="tab-radio-${tabButtonId}" data-tab-id="${tabId}" ${i === 0 ? 'checked' : ''}>
+                <label for="tab-radio-${tabButtonId}">${l}</label>`;
+        }
+        res += `<div></div>\n` // spacer
+        res += `</div>\n`;
+        for (let i = 0; i < parts.length; i++) {
+            res += `\t<div class="tab" data-tab-id="${tabIds[i]}" ${i === 0 ? "" : "hidden"}>${mdLib.render(parts[i])}</div>\n`;
+        }
+        return res + `\n</div>`;
+    });
+
     eleventyConfig.addPairedShortcode("htmlsnippet", (code, type) => {
         if (code[0] == '\n') code = code.slice(1);
         const escaped = code

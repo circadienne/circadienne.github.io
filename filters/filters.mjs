@@ -23,9 +23,13 @@ export function dateFilter(dateObj) {
     };
 }
 
+export function filterDisplayedTags(tags) {
+    return tags.filter(t => !["post", "blog", "writing", "project"].includes(t));
+}
+
 export function tagFilter(tags) {
-    return "<ul class='data-tags'>" + tags.filter(t => !["post", "blog", "writing", "project"].includes(t)).map(t => `<li>${t}</li>`) + "</ul>";
-};
+    return "<ul class='data-tags'>" + tags.map(t => `<li>${t}</li>`).join('') + "</ul>";
+}
 
 export function postThumbnailFilter(post) {
     let content = `

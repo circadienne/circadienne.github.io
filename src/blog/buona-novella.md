@@ -1,7 +1,7 @@
 ---
 title: The Gospels Sans Jesus
 subtitle: Fabrizio de André’s <cite>La buona novella</cite>
-date: 2026-10-17
+date: 2026-10-18
 tags: review
 ---
 

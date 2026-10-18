@@ -1,22 +1,25 @@
 import markdownIt from "markdown-it";
 import markdownFootnotePlugin from 'markdown-it-footnote';
-import * as filters from "./filters/filters.mjs";
+import { dateToString, escapeHTML } from "./util.mjs";
+import { ipa as xsToIpa } from '@auctumnus/xsampa'
 
-function uid() {
-    return Math.random().toString(16).slice(2);
+function dateFilter(date) {
+    return `<span class="date">${dateToString(date)}</span>`;
 }
 
 export default async function (eleventyConfig) {
-    eleventyConfig.addFilter("debug", console.log);
-    eleventyConfig.setNunjucksEnvironmentOptions({
-        throwOnUndefined: true,
-        autoescape: false,
-    });
+    // === Eleventy config ===
     eleventyConfig.addPassthroughCopy({
         "./public/": "/",
         "./public/favicon.ico": "/favicon.ico",
     });
     eleventyConfig.addPassthroughCopy("src/**/*.{js,css}");
+
+    eleventyConfig.setNunjucksEnvironmentOptions({
+        throwOnUndefined: true,
+        autoescape: false,
+    });
+
     const mdLib = new markdownIt({
         html: true,
         typographer: true,
@@ -24,38 +27,45 @@ export default async function (eleventyConfig) {
     });
     mdLib.use(markdownFootnotePlugin);
     eleventyConfig.setLibrary("md", mdLib);
-    eleventyConfig.addFilter("contains", (list, value) => {
-        return list.includes(value);
-    });
-    eleventyConfig.addFilter("markdown", (content) => {
-        return mdLib.render(content);
-    });
+
+    // === Utility filters ===
+    eleventyConfig.addFilter("contains", (list, value) => list.includes(value));
+    // return a list containing the first `n` elements from `list`
     eleventyConfig.addFilter("firstN", (list, n) => list.filter((_, i) => i < n));
-    eleventyConfig.addFilter("date", filters.dateFilter);
-    eleventyConfig.addFilter("filterDisplayedTags", filters.filterDisplayedTags);
-    eleventyConfig.addFilter("tagDisplay", filters.tagFilter);
-    eleventyConfig.addFilter("postThumbnail", filters.postThumbnailFilter);
-    eleventyConfig.addFilter("ipa", filters.ipa);
-    eleventyConfig.addFilter("inlineCode", filters.inlineCode);
-    eleventyConfig.addFilter("prettyURL", function(text) {
-        return text.replace(/https?:\/\//, '');
+    // show only displayed tags (e.g. no collection tags)
+    eleventyConfig.addFilter("filterDisplayedTags", tags => tags.filter(t => !["post", "blog", "writing", "project"].includes(t)));
+
+    // render content as markdown
+    eleventyConfig.addFilter("markdown", (content) => mdLib.render(content));
+    // render content in X-SAMPA as IPA
+    eleventyConfig.addFilter("ipa", xsampa => `<span class="ipa">${xsToIpa(xsampa)}</span>`);
+    // render as inline code
+    eleventyConfig.addFilter("inlineCode", code => `<code class="code-inline">${escapeHTML(code)}</code>`);
+    // pretty print URL (just takes out the protocol name)
+    eleventyConfig.addFilter("prettyURL", text => text.replace(/https?:\/\//, ''));
+    // render date
+    eleventyConfig.addFilter("date", dateFilter);
+    // display tags
+    eleventyConfig.addFilter("tagDisplay", tags => `<ul class='data-tags'>${tags.map(t => `<li>${t}</li>`).join('')}</ul>`);
+    // display post thumbnail
+    eleventyConfig.addFilter("postThumbnail", (post) => {
+        let content = `
+            <div class="post-thumb">
+                <a href="${post.url}">
+                    <h2 class="post-thumb-title">${post.data.title}</h2>`;
+        if (post.data.subtitle || post.data.preview)
+            content += `<div class="post-thumb-subtitle">${post.data.subtitle || post.data.preview}</div>`;
+        if (post.data.date)
+            content += `<div class="post-thumb-date">${dateFilter(post.data.date)}</div>`;;
+        content += "</a></div>";
+        return content;
     });
-    const counters = {};
-    eleventyConfig.addFilter("setCounter", (name, value) => {
-        counters[name] = value;
-        return '';
-    });
-    eleventyConfig.addFilter("getCounter", (name) => {
-        return counters[name];
-    });
-    eleventyConfig.addFilter("getIncCounter", (name) => {
-        return counters[name]++;
-    });
-    let n = 0;
+
     eleventyConfig.addPairedShortcode("spoiler", (text) => {
-        const labelName = `__spoiler-cb${n++}`;
+        const labelName = `__spoiler-cb${uid()}`;
         return `<input type="checkbox" checked hidden id="${labelName}"><label class="spoiler" for="${labelName}">${text}</label>`;
     });
+
     eleventyConfig.addPairedShortcode("sidenote", (text, heading) => {
         if (heading)
             return `<details class="sidenote"><summary>${heading}</summary>${text}</details>`
@@ -88,10 +98,7 @@ export default async function (eleventyConfig) {
 
     eleventyConfig.addPairedShortcode("htmlsnippet", (code, type) => {
         if (code[0] == '\n') code = code.slice(1);
-        const escaped = code
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;");
+        const escaped = escapeHTML(code);
         if (type === "nopreview") {
             return `<div class="code-snippet">
                 <fieldset>

@@ -5,7 +5,7 @@ date: 2026-10-18
 tags: review
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?si=TlgnanyckIstfbwU&amp;list=OLAK5uy_m4iMTQ7rO-1XOFjwTKUTEb0IlKKixmbfQ" title="YouTube video player with Fabrizio de André’s “La buona novella”" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe style="aspect-ratio: 2/1.5" src="https://www.youtube.com/embed/videoseries?si=TlgnanyckIstfbwU&amp;list=OLAK5uy_m4iMTQ7rO-1XOFjwTKUTEb0IlKKixmbfQ" title="YouTube video player with Fabrizio de André’s “La buona novella”" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 {% sidenote %}
     <cite>La buona novella</cite> tracklist:

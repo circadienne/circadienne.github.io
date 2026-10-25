@@ -1,7 +1,9 @@
 import markdownIt from "markdown-it";
-import markdownFootnotePlugin from 'markdown-it-footnote';
-import { dateToString, escapeHTML } from "./util.mjs";
-import { ipa as xsToIpa } from '@auctumnus/xsampa'
+import markdownFootnotePlugin from "markdown-it-footnote";
+import { dateToString, escapeHTML, uid, error } from "./util.mjs";
+import { ipa as xsToIpa } from "@auctumnus/xsampa";
+import { LANGUAGE_NAMES } from "./locale.mjs";
+import bibFilters from "./filters/bibliography.mjs";
 
 function dateFilter(date) {
     return `<span class="date">${dateToString(date)}</span>`;
@@ -11,7 +13,7 @@ export default async function (eleventyConfig) {
     // === Eleventy config ===
     eleventyConfig.addPassthroughCopy({
         "./public/": "/",
-        "./public/favicon.ico": "/favicon.ico",
+        "./public/favicon.png": "/favicon.png",
     });
     eleventyConfig.addPassthroughCopy("src/**/*.{js,css}");
 
@@ -61,6 +63,10 @@ export default async function (eleventyConfig) {
         return content;
     });
 
+    eleventyConfig.addFilter("createBib", bibFilters.createBib);
+    eleventyConfig.addFilter("cite", bibFilters.cite);
+    eleventyConfig.addFilter("displayBib", bibFilters.displayBib);
+
     eleventyConfig.addPairedShortcode("spoiler", (text) => {
         const labelName = `__spoiler-cb${uid()}`;
         return `<input type="checkbox" checked hidden id="${labelName}"><label class="spoiler" for="${labelName}">${text}</label>`;
@@ -72,9 +78,10 @@ export default async function (eleventyConfig) {
         return `<aside class="sidenote">${text}</aside>`;
     });
 
-    eleventyConfig.addPairedShortcode("multilang", (text, ...langs) => {
+    eleventyConfig.addPairedShortcode("multilang", function _multilangShortcode(text, ...langs) {
         const parts = text.split('===');
-        console.assert(parts.length === langs.length);
+        if (parts.length !== langs.length)
+            error(_multilangShortcode, `parts length (${parts.length}) and lang arg number (${langs.length}) must be equal`);
 
         const tabsId = uid();
         const tabIds = [];
@@ -86,7 +93,7 @@ export default async function (eleventyConfig) {
             const tabId = tabsId + '-' + langs[i];
             tabIds.push(tabId);
             res += `<input type="radio" name="tab-radio-${tabsId}" id="tab-radio-${tabButtonId}" data-tab-id="${tabId}" ${i === 0 ? 'checked' : ''}>
-                <label for="tab-radio-${tabButtonId}">${l}</label>`;
+                <label for="tab-radio-${tabButtonId}">${LANGUAGE_NAMES[l]}</label>`;
         }
         res += `<div></div>\n` // spacer
         res += `</div>\n`;

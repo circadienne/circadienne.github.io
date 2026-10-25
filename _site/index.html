@@ -7,7 +7,9 @@
         
     
 
-    <title>Home :: Circadienne</title>
+    <title>Home ✻ Circadienne</title>
+
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/style.css">
@@ -21,10 +23,18 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
     
-    <meta property="og:title" content="Home :: Circadienne">
-    <meta name="twitter:title" content="Home :: Circadienne">
+    <meta property="og:title" content="Home ✻ Circadienne">
+    <meta name="twitter:title" content="Home ✻ Circadienne">
     
     
+
+    <script>
+        window.addEventListener("click", () => {
+            const [sx, sy] = [window.scrollX, window.scrollY];
+            window.location.hash = '';
+            window.scrollTo(sx, sy);
+        });
+    </script>
 </head>
 
 <body>
@@ -53,9 +63,18 @@
         <div class="layout-main">
             <main>
                 
+<style>
+    #title {
+        font-style: italic;
+        letter-spacing: -4px;
+        text-decoration: 3px underline;
+        text-underline-offset: 4px;
+    }
+</style>
+
 <h1 id="title">Circadienne</h1>
 
-<p>This is the place I go to when I’m procrasting on something. Here are the things you can find on this website:</p>
+<p>This is the place I go when I’m procrasting on something. Here are the things you can find on this website:</p>
 
 <section class="post-thumb-index">
     
@@ -151,17 +170,11 @@
             <ul class="samples">
                 
                 
-                    
-                        <li><a href="/blog/buona-novella/">The Gospels Sans Jesus</a></li>
-                    
+                    <li><a href="/blog/buona-novella/">The Gospels Sans Jesus</a></li>
                 
-                    
-                        <li><a href="/blog/make-your-website/">Make Your Own Website</a></li>
-                    
+                    <li><a href="/blog/make-your-website/">Make Your Own Website</a></li>
                 
-                    
-                        <li><a href="/blog/louis-theroux-manosphere/">Men Who Hate Women</a></li>
-                    
+                    <li><a href="/blog/louis-theroux-manosphere/">Men Who Hate Women</a></li>
                 
                 
             </ul>
@@ -171,17 +184,11 @@
             <ul class="samples">
                 
                 
-                    
-                        <li><a href="/writing/spirits/">Spirits</a></li>
-                    
+                    <li><a href="/writing/spirits/">Spirits</a></li>
                 
-                    
-                        <li><a href="/writing/death-of-yun-is/">On the Death of Yun-Is</a></li>
-                    
+                    <li><a href="/writing/death-of-yun-is/">On the Death of Yun-Is</a></li>
                 
-                    
-                        <li><a href="/writing/city-of-doubles/">The City of Doubles</a></li>
-                    
+                    <li><a href="/writing/city-of-doubles/">The City of Doubles</a></li>
                 
                 
             </ul>
@@ -191,15 +198,9 @@
             <ul class="samples">
                 
                 
-                    
-                        <li><a href="/project/calcolo-media-uni/">Calcolo media ponderata</a></li>
-                    
+                    <li><a href="/project/calcolo-media-uni/">Calcolo media ponderata</a></li>
                 
-                    
-                        <li><a href="/project/learn-ipa/">Learn the IPA</a></li>
-                    
-                
-                    
+                    <li><a href="/project/learn-ipa/">Learn the IPA</a></li>
                 
                 
             </ul>

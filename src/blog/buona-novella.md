@@ -16,14 +16,14 @@ tags: review
         <li><em>Il sogno di Maria</em> (‘Mary’s Dream’)</li>
         <li><em>Ave Maria</em></li>
         <li><em>Maria nella bottega d’un falegname</em> (‘Mary in a Carpenter’s Workshop’)</li>
-        <li><em>Via della croce</em> (‘Via Crucis’)</li>
+        <li><em>Via della croce</em> (‘<em>Via Crucis</em>’)</li>
         <li><em>Tre madri</em> (‘Three Mothers’)</li>
         <li><em>Il testamento di Tito</em> (‘Titus’s Will’)</li>
         <li><em>Laudate hominem</em> (‘Praise the Man’)</li>
     </ol>
 {% endsidenote %}
 
-Italy has a proud tradition of singer-songwriters, in Italian called _cantautori_ (a pormanteau of _cantatore_ ‘singer’ and _autore_ ‘author’). Many consider the best representative of this tradition to be Fabrizio de André, known by the nickname _Faber_. The word _faber_ (from Latin ‘smith; maker; artisan’) is a reference to de André’s favourite brand of pencils, Faber-Castelli, but is also a reference to his first name (_Fabrizio_ sounds similar to the Italian _fabbro_ ‘smith’) and to his status as a poet (via the metaphor <span style="font-variant: small-caps">Poet as Maker</span>; see Andrew Hurley’s note to “The Maker” in his translations of Borges’s _Collected Fictions_). In fact, while some of his songs are very musically interesting, his melodies are for the most part very simple and what makes them so beautiful are his poetic texts.
+Italy has a proud tradition of singer-songwriters, in Italian called _cantautori_ (a pormanteau of _cantatore_ ‘singer’ and _autore_ ‘author’). Many consider the best representative of this tradition to be Fabrizio de André, known by the nickname _Faber_. The word _faber_ (from Latin ‘smith; maker; artisan’) is a reference to de André’s favourite brand of pencils, Faber-Castelli, but is also a reference to his first name (_Fabrizio_ sounds similar to the Italian _fabbro_ ‘smith’) and to his status as a poet (via the metaphor <span style="font-variant: small-caps">Poet as Maker</span>; see Andrew Hurley’s note to “The Maker” in his translation of Borges’s _Collected Fictions_). In fact, while some of his songs are very musically interesting, his melodies are for the most part very simple in comparison to his beautiful lyricism.
 
 After the 1968 student revolutions, while his contemporaries write songs and release albums celebrating or in some way commenting on them, de André begins work on an album retelling Jesus’s life.[^1968] He ultimately releases it in 1969 with the title _La buona novella_ (‘The Good News’), a literal translation of the Greek _<span style="font-family: serif">εὐαγγέλιον</span>_ (_evangelion_, ‘good news; Gospel’).
 

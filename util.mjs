@@ -29,6 +29,22 @@ export function isWhitespace(text) {
     return text.trim() == '';
 }
 
+// unique ID
+// collisions are so unlikely at this small a scale that
+// it's not even worth it to check for duplicates
 export function uid() {
     return Math.random().toString(16).slice(2);
+}
+
+export function error(func, ...args) {
+    console.error(`[ERROR in ${func.name}]`, ...args);
+    throw new Error(`${func.name}: ${args.join(' ')}`);
+}
+
+export function assert(func, cond, ...args) {
+    if (!cond) error(func, ...args);
+}
+
+export function sanity(...args) {
+    console.log("=> SANITY CHECK: GOT HERE!!!", ...args);
 }

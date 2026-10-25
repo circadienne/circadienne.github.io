@@ -60,13 +60,8 @@ pre, code {
     padding: 2px 4px;
 }
 
-q {
-    &::before { content: "“" }
-    &::after { content: "”" }
-}
-
 .sidenote {
-    margin: 2em 2em;
+    margin: 2em 0;
     font-size: .95em;
 }
 
@@ -76,7 +71,12 @@ iframe {
     margin: 0 auto;
 }
 
-fieldset { border-radius: 5px }
+fieldset {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
 
 legend {
     background-color: black;
@@ -108,7 +108,7 @@ details {
     }
 }
 
-blockquote {
+blockquote, .sidenote {
     text-align: left;
     margin-inline-start: 20px;
     margin-inline-end: 20px;
@@ -116,6 +116,14 @@ blockquote {
 
 main h1 { font-size: 1.5em; }
 main h2 { font-size: 1.3em; }
+
+h1.numbered {
+    counter-increment: heading;
+
+    &::before {
+        content: counter(heading) ". ";
+    }
+}
 
 main p {
     text-align: justify;
@@ -159,10 +167,69 @@ input:checked + .spoiler {
     user-select: none;
 }
 
+.bibliography {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .4em;
+
+    > li {
+        padding: 0;
+        padding-left: 2em;
+        text-indent: -2em;
+    }
+
+    .citation-list {
+        display: inline;
+        list-style: none;
+        padding: 0;
+        white-space: pre-wrap;
+
+        li {
+            display: inline;
+            padding: 0;
+            user-select: none;
+
+            a {
+                padding: 0 4px;
+            }
+        }
+
+        li + li::before {
+            content: ", ";
+        }
+    }
+}
+
+.bibliography li:target, .citation a[href]:target, .footnote-ref > a:target, .footnotes-list > li:target {
+    background-color: var(--color-accent-2);
+}
+
+.citation a::before {
+    content: attr(data-citation-id);
+    font-family: var(--font-sans);
+    vertical-align: super;
+    font-size: .6em;
+    color: gray;
+}
+
+.citation {
+    a[href], a[href]:visited { color: unset; }
+}
+
+
 /* Post title */
 h1#title {
     font-size: 2.2em;
     margin: 0;
+
+    &::before {
+        content: url('/favicon.svg');
+        padding-right: .5em;
+        position: relative;
+        top: 10px;
+    }
 }
 
 main > header {
@@ -273,8 +340,8 @@ table {
             font-size: 1.3em;
         }
 
-        .post-thumb-subtitle {
-            font-style: italic;
+        .post-thumb-subtitle em, cite {
+            font-style: normal;
         }
 
         .post-thumb-date {
@@ -391,7 +458,8 @@ header > nav a.nav-link-active {
     border-bottom: 1px solid black;
 
     font-weight: bold;
-    /* get around the specifity of the intra-site link selector :not([href^=http]) */
+
+    /* this gets around the specifity of the intra-site link selector :not([href^=http]) */
     a[href] { text-decoration: none; }
 
     > nav ul {
@@ -479,13 +547,24 @@ footer {
 }
 
 @media only screen and (min-width: 1100px) {
+    .content {
+        margin-top: 3em;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     iframe {
         width: 50%;
     }
 
-    blockquote {
+    blockquote, .sidenote {
         margin-inline-start: 40px;
         margin-inline-end: 40px;
+    }
+
+    .bibliography > li {
+        padding-left: 4em;
+        text-indent: -4em;
     }
 
     .content {

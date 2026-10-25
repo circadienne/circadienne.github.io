@@ -3,9 +3,18 @@ title: Home
 cssInclude: [ '/css/index.css' ]
 ---
 
+<style>
+    #title {
+        font-style: italic;
+        letter-spacing: -4px;
+        text-decoration: 3px underline;
+        text-underline-offset: 4px;
+    }
+</style>
+
 <h1 id="title">Circadienne</h1>
 
-<p>This is the place I go to when I’m procrasting on something. Here are the things you can find on this website:</p>
+<p>This is the place I go when I’m procrasting on something. Here are the things you can find on this website:</p>
 
 <section class="post-thumb-index">
     {% macro samples(collection) %}
@@ -16,7 +25,7 @@ cssInclude: [ '/css/index.css' ]
                 <li>{{ item | postThumbnail | safe }}</li>
             {% endfor %}
             {% if collections[collection] | length > maxSamples %}
-                <li><a href="/{{ collection }}/">More...</a></li>
+                <li><a href="/{{ collection }}/">More…</a></li>
             {% endif %}
         </ul>
     {% endmacro %}

@@ -6,10 +6,12 @@
     {% if displayTitle == "Home" %}
         {% set displayTitle = "Circadienne" %}
     {% else %}
-        {% set displayTitle = title | striptags + " :: Circadienne" %}
+        {% set displayTitle = title | striptags + " ✻ Circadienne" %}
     {% endif %}
 
     <title>{{ displayTitle }}</title>
+
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/style.css">
@@ -34,6 +36,14 @@
         <meta property="og:description" content="{{ subtitle | striptags }}">
     {% endif %}
     {# <meta property="og:url" content="{{ data.url }}"> #}
+
+    <script>
+        window.addEventListener("click", () => {
+            const [sx, sy] = [window.scrollX, window.scrollY];
+            window.location.hash = '';
+            window.scrollTo(sx, sy);
+        });
+    </script>
 </head>
 
 <body>
@@ -41,14 +51,12 @@
         {% macro samples(collection) %}
             {% set maxSamples = 3 %}
             <ul class="samples">
-                {% set items2 = collections[collection] | reverse | slice(maxSamples) %}
-                {% for items in items2 %}
-                    {% for item in items %}
-                        <li><a href="{{ item.url }}">{{ item.data.title | safe }}</a></li>
-                    {% endfor %}
+                {% set items = collections[collection] | reverse | firstN(maxSamples) %}
+                {% for item in items %}
+                    <li><a href="{{ item.url }}">{{ item.data.shortTitle or item.data.title | safe }}</a></li>
                 {% endfor %}
-                {% if items2 | length > maxSamples %}
-                    <li><a href="/{{ collection }}/">More...</a></li>
+                {% if collections[collection] | length > maxSamples %}
+                    <li><a href="/{{ collection }}/">More…</a></li>
                 {% endif %}
             </ul>
         {% endmacro %}
